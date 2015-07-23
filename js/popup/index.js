@@ -42,7 +42,7 @@ function toggleBlockBtnBg() {
 
 /** Toggles textContent of the block_btn according to block status. */
 function toggleBlockBtnText() {
-  dom.block_btn.textContent = isBlocking() ? 'Blocking' : 'NOT blocking';
+  dom.block_btn.textContent = isBlocking() ? 'Blocking :)' : 'NOT blocking :(';
 }
 
 /** Calls all block_btn toggle functions. */
