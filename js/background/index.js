@@ -37,8 +37,8 @@ function set(key, value) {
  * variable block is set to true, blocks all request with urls that contain
  * an (url) string found in the urls_to_block array.
  *
- * @param {object} req -
- * @return {object} -
+ * @param {object} req - Browser request
+ * @return {object} - If it contains 'cancel: true', request will be canceled
  */
 function onBeforeRequest(req) {
   // Whether to block the current request, by default its false. Gets set to
@@ -65,12 +65,25 @@ function onBeforeRequest(req) {
         total_blocks: storage.total_blocks+1 || 1
       });
     });
+
+    // Get the current total_blocks_session and store the new total_blocks
+    // value in the storage.
+    chrome.storage.sync.get(function (storage) {
+      chrome.storage.sync.set({
+        total_blocks_session: storage.total_blocks_session+1 || 1
+      });
+    });
   }
 
   return {
     cancel: cancel_req
   };
 }
+
+// Set the total_blocks_session to 0 on extension initialization.
+chrome.storage.sync.set({
+  total_blocks_session: 0
+});
 
 // Bind the onBeforeRequest function to the chrome onBeforeRequest event
 // using the filter and extras defined at the top of this file.

@@ -7,7 +7,8 @@ var bg = chrome.extension.getBackgroundPage();
  */
 var dom = {
   block_btn: document.getElementById('block_btn'),
-  total_blocks_el: document.getElementById('total_blocks')
+  total_blocks_el: document.getElementById('total_blocks'),
+  total_blocks_session_el: document.getElementById('total_blocks_session')
 };
 
 /**
@@ -51,12 +52,23 @@ function toggleBlockBtn() {
 }
 
 /**
- * Sets the textContent of blocks_el span to the total blocks from the bg.
+ * Sets the textContent of total_blocks_el span to the total blocks
+ * from the extension bg.
  *
  * @param {number} total_blocks - Total block count from chrome.storage
  */
 function setBlocksEl(total_blocks) {
   dom.total_blocks_el.textContent = total_blocks;
+}
+
+/**
+ * Sets the textContent of total_blocks_session_el span to the total
+ * blocks from the extension bg.
+ *
+ * @param {number} total_blocks_session - Total block count from chrome.storage
+ */
+function setBlocksSessionEl(total_blocks_session) {
+  dom.total_blocks_session_el.textContent = total_blocks_session;
 }
 
 /** Calls all functions to be called when pinging. */
@@ -73,7 +85,6 @@ function storageOnChanged(changes) {
   setBlocksEl(changes.total_blocks.newValue || 0);
 }
 
-
 /**
  * Simple initializer function that calls everything we want to be called
  * when the extension popup loads.
@@ -87,14 +98,16 @@ function init() {
   // Bind storageOnChanged to the chrome.storage onChanged event.
   chrome.storage.onChanged.addListener(storageOnChanged);
 
-  // Load the total_blocks when the popup is opened.
+  // Load and draw the total_blocks when the popup is opened.
   chrome.storage.sync.get(function (storage) {
     setBlocksEl(storage.total_blocks || 0);
+  });
+
+  // Load and draw the total_blocks_session when the popup is opened.
+  chrome.storage.sync.get(function (storage) {
+    setBlocksSessionEl(storage.total_blocks_session || 0);
   });
 }
 
 // Leggo
 init();
-
-
-
