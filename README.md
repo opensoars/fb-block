@@ -7,5 +7,11 @@ Chrome extension that blocks ALL request made to the main facebook domain and it
 
 ---
 
+## Install
+* Clone or download source code.
+* Browse to `chrome://extensions`
+* Check the box `Developer mode` shown at the top of the `chrome://extensions` page.
+* Click load unpacked extensions and browse to the direcotry you cloned or downloaded fb-block in and select the fb-block directory.
+
 @TODO
 * Readme DOC
