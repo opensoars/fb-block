@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "name": "fb-block",
-  "description": "",
+  "description": "Blocks ALL request made to the main facebook domain and its subdomains",
   "version": "1.0",
 
   "browser_action": {
@@ -13,7 +13,7 @@
   "background": {
     "scripts": ["/js/background/index.js"]
   },
-  
+
   "permissions": [
     "webRequest",
     "webRequestBlocking",
