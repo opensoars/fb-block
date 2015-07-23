@@ -71,11 +71,6 @@ function setBlocksSessionEl(total_blocks_session) {
   dom.total_blocks_session_el.textContent = total_blocks_session;
 }
 
-/** Calls all functions to be called when pinging. */
-function ping() {
-  setBlocksEl();
-}
-
 /**
  * Gets called when chrome.storage emits an changed event.
  *
