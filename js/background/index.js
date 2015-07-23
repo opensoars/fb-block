@@ -58,18 +58,11 @@ function onBeforeRequest(req) {
   });
 
   if (cancel_req) {
-    // Get the current total_blocks and store the new total_blocks value
-    // in the storage.
+    // Get the current total_blocks and session_blocks and store them
+    // incremented by 1 in the chrome storage.
     chrome.storage.sync.get(function (storage) {
       chrome.storage.sync.set({
-        total_blocks: storage.total_blocks+1 || 1
-      });
-    });
-
-    // Get the current session_blocks and store the new session_blocks
-    // value in the storage.
-    chrome.storage.sync.get(function (storage) {
-      chrome.storage.sync.set({
+        total_blocks: storage.total_blocks+1 || 1,
         session_blocks: storage.session_blocks+1 || 1
       });
     });
