@@ -46,12 +46,23 @@ function getTotalBlocks() {
 /** Toggles bg block variable and toggles block_btn bg (toggleBlockBtnBg). */
 function onBlockBtnClick() {
   setBlock(!bg.get('block'));
-  toggleBlockBtnBg();
+  toggleBlockBtn();
 }
 
 /** Toggles background color of the block_btn according to block status. */
 function toggleBlockBtnBg() {
   dom.block_btn.style.background = isBlocking() ? 'green' : 'red';
+}
+
+/** Toggles textContent of the block_btn according to block status. */
+function toggleBlockBtnText() {
+  dom.block_btn.textContent = isBlocking() ? 'Blocking' : 'NOT blocking';
+}
+
+/** Calls all block_btn toggle functions. */
+function toggleBlockBtn() {
+  toggleBlockBtnBg();
+  toggleBlockBtnText();
 }
 
 /** Sets the textContent of blocks_el span to the total blocks from the bg. */
@@ -72,7 +83,7 @@ function init() {
   dom.block_btn.addEventListener('click', onBlockBtnClick);
 
   // Set the block_btn bg according to current block status
-  toggleBlockBtnBg();
+  toggleBlockBtn();
 
   // Set blocks_el, 'ping' and update every second
   setBlocksEl();
