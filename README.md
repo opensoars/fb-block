@@ -10,6 +10,8 @@ Chrome extension that blocks ALL request made to the main Facebook domain and it
 
 ## Why block Facebook?
 
+@TODO
+
 
 ## Install
 
