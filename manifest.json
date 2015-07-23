@@ -6,7 +6,7 @@
   "version": "1.0",
 
   "browser_action": {
-    "default_icon": "style/img/icon_16.png",
+    "default_icon": "style/img/popup_btn_icon.png",
     "default_popup": "popup.html"
   },
 
