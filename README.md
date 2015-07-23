@@ -3,10 +3,12 @@
 [![Code Climate](https://codeclimate.com/github/opensoars/fb-block/badges/gpa.svg)](https://codeclimate.com/github/opensoars/fb-block)
 [![Inline docs](http://inch-ci.org/github/opensoars/fb-block.svg?branch=master)](http://inch-ci.org/github/opensoars/fb-block)
 
-Chrome extension that blocks ALL request made to the main facebook domain and its subdomains.
+Chrome extension that blocks ALL request made to the main Facebook domain and its subdomains.
 
 
 ---
+
+## Why block Facebook?
 
 
 ## Install
@@ -19,8 +21,4 @@ Chrome extension that blocks ALL request made to the main facebook domain and it
 
 ## Use
 
-Click the extension popup button (facebook 'f' logo with a red cross) and click the button to toggle whether to block facebook or not. This popup also shows how much requests to facebook are blocked.
-
-
-@TODO
-* Readme DOC
+Click the extension popup button (Facebook 'f' logo with a red cross) and click the button to toggle whether to block Facebook or not. This popup also shows how much requests to Facebook are blocked.
