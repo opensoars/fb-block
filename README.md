@@ -9,5 +9,3 @@ Chrome extension that blocks ALL request made to the main facebook domain and it
 
 @TODO
 * Readme DOC
-* Some JS DOC
-* Push hooks (code-climate, docs)
