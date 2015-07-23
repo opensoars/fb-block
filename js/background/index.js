@@ -66,11 +66,11 @@ function onBeforeRequest(req) {
       });
     });
 
-    // Get the current total_blocks_session and store the new total_blocks
+    // Get the current session_blocks and store the new session_blocks
     // value in the storage.
     chrome.storage.sync.get(function (storage) {
       chrome.storage.sync.set({
-        total_blocks_session: storage.total_blocks_session+1 || 1
+        session_blocks: storage.session_blocks+1 || 1
       });
     });
   }
@@ -80,9 +80,9 @@ function onBeforeRequest(req) {
   };
 }
 
-// Set the total_blocks_session to 0 on extension initialization.
+// Set the session_blocks to 0 on extension initialization.
 chrome.storage.sync.set({
-  total_blocks_session: 0
+  session_blocks: 0
 });
 
 // Bind the onBeforeRequest function to the chrome onBeforeRequest event

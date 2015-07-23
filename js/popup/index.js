@@ -8,7 +8,7 @@ var bg = chrome.extension.getBackgroundPage();
 var dom = {
   block_btn: document.getElementById('block_btn'),
   total_blocks_el: document.getElementById('total_blocks'),
-  total_blocks_session_el: document.getElementById('total_blocks_session')
+  session_blocks_el: document.getElementById('session_blocks')
 };
 
 /**
@@ -57,18 +57,18 @@ function toggleBlockBtn() {
  *
  * @param {number} total_blocks - Total block count from chrome.storage
  */
-function setBlocksEl(total_blocks) {
+function setTotalBlocksEl(total_blocks) {
   dom.total_blocks_el.textContent = total_blocks;
 }
 
 /**
- * Sets the textContent of total_blocks_session_el span to the total
+ * Sets the textContent of session_blocks_el span to the total
  * blocks from the extension bg.
  *
- * @param {number} total_blocks_session - Total block count from chrome.storage
+ * @param {number} session_blocks - Session block count from chrome.storage
  */
-function setBlocksSessionEl(total_blocks_session) {
-  dom.total_blocks_session_el.textContent = total_blocks_session;
+function setSessionBlocksEl(session_blocks) {
+  dom.session_blocks_el.textContent = session_blocks;
 }
 
 /**
@@ -77,13 +77,11 @@ function setBlocksSessionEl(total_blocks_session) {
  * @param {object} changes - Changed storage, holds oldValue and newValue
  */
 function storageOnChanged(changes) {
-
   if (changes.total_blocks) {
-    setBlocksEl(changes.total_blocks.newValue || 0);
+    setTotalBlocksEl(changes.total_blocks.newValue || 0);
   }
-
-  if (changes.total_blocks_session) {
-    setBlocksSessionEl(changes.total_blocks_session.newValue || 0);
+  if (changes.session_blocks) {
+    setSessionBlocksEl(changes.session_blocks.newValue || 0);
   }
 }
 
@@ -102,12 +100,12 @@ function init() {
 
   // Load and draw the total_blocks when the popup is opened.
   chrome.storage.sync.get(function (storage) {
-    setBlocksEl(storage.total_blocks || 0);
+    setTotalBlocksEl(storage.total_blocks || 0);
   });
 
-  // Load and draw the total_blocks_session when the popup is opened.
+  // Load and draw the session_blocks when the popup is opened.
   chrome.storage.sync.get(function (storage) {
-    setBlocksSessionEl(storage.total_blocks_session || 0);
+    setSessionBlocksEl(storage.session_blocks || 0);
   });
 }
 
