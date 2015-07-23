@@ -9,9 +9,11 @@
     "default_icon": "style/img/icon_16.png",
     "default_popup": "popup.html"
   },
+
   "background": {
     "scripts": ["/js/background/index.js"]
   },
+  
   "permissions": [
     "webRequest",
     "webRequestBlocking",
