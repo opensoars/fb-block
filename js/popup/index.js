@@ -46,11 +46,11 @@ function onBlockBtnClick() {
  */
 function onResetBtnClick(evt) {
   var to_set = {};
-  
+
   var to_set_key = evt.target.id.replace(/reset\_/, '').replace(/\_btn/, '') +
         '_blocks';
 
-  to_set[to_set_key] = 0
+  to_set[to_set_key] = 0;
 
   chrome.storage.sync.set(to_set);
 }
