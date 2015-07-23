@@ -13,6 +13,10 @@ Chrome extension that blocks ALL request made to the main Facebook domain and it
 @TODO
 
 
+## Features
+
+@TODO
+
 ## Install
 
 * Clone or download source code.
