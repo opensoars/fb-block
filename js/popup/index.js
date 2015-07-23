@@ -2,7 +2,7 @@
 var bg = chrome.extension.getBackgroundPage();
 
 /** Time between each bg ping. */
-var ping_interval_ms = 333
+var ping_interval_ms = 333;
 
 /** Will hold the interval id bound to the ping interval. */
 var ping_interval;
