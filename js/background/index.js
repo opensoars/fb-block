@@ -1,10 +1,10 @@
 /** Whether to block facebook or not. */
 var block = true;
 
-/** TODO */
+/** Which urls trigger the onBeforeRequest callback. */
 var filter = { urls: ['<all_urls>'] };
 
-/** TODO */
+/** Extra onBeforeRequest info. */
 var extras = ['blocking'];
 
 /** List of urls to block, gets looped through onBeforeRequest. */
