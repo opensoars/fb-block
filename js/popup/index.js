@@ -77,7 +77,14 @@ function setBlocksSessionEl(total_blocks_session) {
  * @param {object} changes - Changed storage, holds oldValue and newValue
  */
 function storageOnChanged(changes) {
-  setBlocksEl(changes.total_blocks.newValue || 0);
+
+  if (changes.total_blocks) {
+    setBlocksEl(changes.total_blocks.newValue || 0);
+  }
+
+  if (changes.total_blocks_session) {
+    setBlocksSessionEl(changes.total_blocks_session.newValue || 0);
+  }
 }
 
 /**
