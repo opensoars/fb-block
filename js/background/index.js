@@ -12,9 +12,6 @@ var urls_to_block = [
   'facebook.com'
 ];
 
-/** Counter that gets incremented when a request is blocked. */
-var total_blocks = 0;
-
 /**
  * Returns a global variable its value.
  *
@@ -61,7 +58,13 @@ function onBeforeRequest(req) {
   });
 
   if (cancel_req) {
-    total_blocks++;
+    // Get the current total_blocks and store the new total_blocks value
+    // in the storage.
+    chrome.storage.sync.get(function (storage) {
+      chrome.storage.sync.set({
+        total_blocks: storage.total_blocks+1 || 1
+      });
+    });
   }
 
   return {
@@ -71,8 +74,4 @@ function onBeforeRequest(req) {
 
 // Bind the onBeforeRequest function to the chrome onBeforeRequest event
 // using the filter and extras defined at the top of this file.
-chrome.webRequest.onBeforeRequest.addListener(
-  onBeforeRequest,
-  filter,
-  extras
-);
+chrome.webRequest.onBeforeRequest.addListener(onBeforeRequest, filter, extras);

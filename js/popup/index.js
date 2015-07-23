@@ -1,12 +1,6 @@
 /** Extension background page. */
 var bg = chrome.extension.getBackgroundPage();
 
-/** Time between each bg ping. */
-var ping_interval_ms = 333;
-
-/** Will hold the interval id bound to the ping interval. */
-var ping_interval;
-
 /**
  * Extension popup DOM namespace.
  * @namespace
@@ -34,15 +28,6 @@ function isBlocking() {
   return bg.get('block');
 }
 
-/**
- * Gets total_blocks variable from bg using its get method.
- *
- * @return {number} - Total amount of blocks the bg did
- */
-function getTotalBlocks() {
-  return bg.get('total_blocks');
-}
-
 /** Toggles bg block variable and toggles block_btn bg (toggleBlockBtnBg). */
 function onBlockBtnClick() {
   setBlock(!bg.get('block'));
@@ -65,9 +50,13 @@ function toggleBlockBtn() {
   toggleBlockBtnText();
 }
 
-/** Sets the textContent of blocks_el span to the total blocks from the bg. */
-function setBlocksEl() {
-  dom.total_blocks_el.textContent = getTotalBlocks();
+/**
+ * Sets the textContent of blocks_el span to the total blocks from the bg.
+ *
+ * @param {number} total_blocks - Total block count from chrome.storage
+ */
+function setBlocksEl(total_blocks) {
+  dom.total_blocks_el.textContent = total_blocks;
 }
 
 /** Calls all functions to be called when pinging. */
@@ -76,19 +65,36 @@ function ping() {
 }
 
 /**
+ * Gets called when chrome.storage emits an changed event.
+ *
+ * @param {object} changes - Changed storage, holds oldValue and newValue
+ */
+function storageOnChanged(changes) {
+  setBlocksEl(changes.total_blocks.newValue || 0);
+}
+
+
+/**
  * Simple initializer function that calls everything we want to be called
  * when the extension popup loads.
  */
 function init() {
   dom.block_btn.addEventListener('click', onBlockBtnClick);
 
-  // Set the block_btn bg according to current block status
+  // Set the block_btn bg according to current block status.
   toggleBlockBtn();
 
-  // Set blocks_el, 'ping' and update every second
-  setBlocksEl();
-  ping_interval = setInterval(ping, ping_interval_ms);
+  // Bind storageOnChanged to the chrome.storage onChanged event.
+  chrome.storage.onChanged.addListener(storageOnChanged);
+
+  // Load the total_blocks when the popup is opened.
+  chrome.storage.sync.get(function (storage) {
+    setBlocksEl(storage.total_blocks || 0);
+  });
 }
 
 // Leggo
 init();
+
+
+
