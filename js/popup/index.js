@@ -2,13 +2,15 @@
 var bg = chrome.extension.getBackgroundPage();
 
 /**
- * Extension popup DOM namespace.
+ * Extension popup DOM els namespace.
  * @namespace
  */
-var dom = {
+var els = {
   block_btn: document.getElementById('block_btn'),
   total_blocks_el: document.getElementById('total_blocks'),
-  session_blocks_el: document.getElementById('session_blocks')
+  session_blocks_el: document.getElementById('session_blocks'),
+  reset_total_btn: document.getElementById('reset_total_btn'),
+  reset_session_btn: document.getElementById('reset_session_btn')
 };
 
 /**
@@ -35,14 +37,32 @@ function onBlockBtnClick() {
   toggleBlockBtn();
 }
 
+/**
+ * Gets called when a reset button gets clicked. Finds out which one was
+ * clicked (total or session) and resets the corresponding data from the
+ * chrome storage.
+ *
+ * @param {object} evt - DOM event object, target.id holds which btn as clicked
+ */
+function onResetBtnClick(evt) {
+  var to_set = {};
+  
+  var to_set_key = evt.target.id.replace(/reset\_/, '').replace(/\_btn/, '') +
+        '_blocks';
+
+  to_set[to_set_key] = 0
+
+  chrome.storage.sync.set(to_set);
+}
+
 /** Toggles background color of the block_btn according to block status. */
 function toggleBlockBtnBg() {
-  dom.block_btn.style.background = isBlocking() ? 'green' : 'red';
+  els.block_btn.style.background = isBlocking() ? 'green' : 'red';
 }
 
 /** Toggles textContent of the block_btn according to block status. */
 function toggleBlockBtnText() {
-  dom.block_btn.textContent = isBlocking() ? 'Blocking :)' : 'NOT blocking :(';
+  els.block_btn.textContent = isBlocking() ? 'Blocking :)' : 'NOT blocking :(';
 }
 
 /** Calls all block_btn toggle functions. */
@@ -58,7 +78,7 @@ function toggleBlockBtn() {
  * @param {number} total_blocks - Total block count from chrome.storage
  */
 function setTotalBlocksEl(total_blocks) {
-  dom.total_blocks_el.textContent = total_blocks;
+  els.total_blocks_el.textContent = total_blocks;
 }
 
 /**
@@ -68,7 +88,7 @@ function setTotalBlocksEl(total_blocks) {
  * @param {number} session_blocks - Session block count from chrome.storage
  */
 function setSessionBlocksEl(session_blocks) {
-  dom.session_blocks_el.textContent = session_blocks;
+  els.session_blocks_el.textContent = session_blocks;
 }
 
 /**
@@ -85,12 +105,19 @@ function storageOnChanged(changes) {
   }
 }
 
+
+
 /**
  * Simple initializer function that calls everything we want to be called
  * when the extension popup loads.
  */
 function init() {
-  dom.block_btn.addEventListener('click', onBlockBtnClick);
+  els.block_btn.addEventListener('click', onBlockBtnClick);
+
+  // Bind onResetBtnClick event to both reset buttons, onResetBtnClick
+  // will find out which button was clicked.
+  els.reset_total_btn.addEventListener('click', onResetBtnClick);
+  els.reset_session_btn.addEventListener('click', onResetBtnClick);
 
   // Set the block_btn bg according to current block status.
   toggleBlockBtn();

@@ -4,24 +4,73 @@
 
     <style>
       body {
-        width: 240px;
+        width: 260px;
         font-size: 14px;
       }
 
-      #block_btn {
+      button {
         color: white;
         border: 1px solid black;
         padding: 15px;
         cursor: pointer;
         width: 100%;
+        margin-bottom: 9px;
+        border-radius: 2px;
+      }
+
+      section.counters {
+
+      }
+
+      span.block-counter {
+        font-weight: bold;
+      }
+
+      section.reset-btns button {
+        color: black;
+      }
+
+      button#reset_total_btn {
+        margin-top: 9px;
+      }
+
+      button#reset_session_btn {
+        margin-bottom: 0px;
       }
     </style>
   </head>
   <body>
-    <button id='block_btn'>Blocking</button><br><br>
-    Total blocks: <span id='total_blocks'>ERROR</span><br>
-    Current browsing session blocks: <span id='session_blocks'>ERROR</span>
+
+    <main>
+
+      <section>
+        <button id='block_btn'>Blocking</button>
+      </section>
+
+      <section class='counters'>
+        <section>
+          <span>Total blocks: </span>
+          <span class='block-counter' id='total_blocks'>ERROR</span>
+        </section>
+        <section>
+          <span>Current browsing session blocks: </span>
+          <span class='block-counter' id='session_blocks'>ERROR</span>
+        </section>
+      </section>
+
+      <section class='reset-btns'>
+        <section>
+          <button id='reset_total_btn'>Reset total blocks</button>
+        </section>
+        <section>
+          <button id='reset_session_btn'>Reset session blocks</button>
+        </section>
+      </section>
+
+    </main>
+
 
     <script src='./js/popup/index.js'></script>
+    
   </body>
 </html>
