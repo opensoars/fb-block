@@ -17,6 +17,7 @@ A while ago, I decided to delete my Facebook account because of the way Facebook
     - I wanted to get rid of Facebook tracking me
     - I used a tool recommended by Facebook to opt-out of the tracking
     - The tool told me that I was no longer being tracked whilst still being tracked
+
 2.
     - I was
 
