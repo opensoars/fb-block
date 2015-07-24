@@ -22,7 +22,14 @@ A while ago, I decided to delete my Facebook account because of the way Facebook
     - I used a tool recommended by Facebook to find out if I was being tracked and if so, to opt-out of it
     - The tool told me that I was not being tracked, after which I checked my cookies and found the `datr` tracking cookie set by Facebook.
 
-The `datr` cookie I mentioned before was set to the domains `.facebook.com` and `facebook.com/` which means it will be send along with every HTTP request to the main Facebook website, well that makes sense. But more concerning, it was also send along with every request made to a `facebook.com` subdomain. Well, I never visit a single Facebook page, neither do I browse to one of its subdomains, so I should be in the clear right? Well no.. the web is cluttered with Facebook social plugins, and each of them  made requests to either `facebookk.com` or one of its subdomains. Meaning, I was still being tracked by facebook.
+The `datr` cookie I mentioned before was set to the domains `.facebook.com` and `facebook.com/` which means it will be send along with every HTTP request to the main Facebook website, well that makes sense. But more concerning, it was also send along with every request made to a `facebook.com` subdomain. Well, I never visit a single Facebook page, neither do I browse to one of its subdomains, so I should be in the clear right? Well no.. the web is cluttered with Facebook social plugins, and each of them  made requests to either `facebook.com` or one of its subdomains. Meaning, I was still being tracked by Facebook after all these steps:
+
+* Request an account deletion
+* Confirming the account deletion
+* Clearing my cookkies
+* Using a tool recommended by Facebook to opt-out of their tracking
+
+Well, just fuck Facebook, so here is `fb-block`!
 
 
 ## Install
