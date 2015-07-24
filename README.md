@@ -27,7 +27,7 @@ The `datr` cookie I mentioned was set to the domains `.facebook.com` and `facebo
 * Request an account deletion
 * Confirming the account deletion
 * Clearing my cookkies
-* Using a tool recommended by Facebook to opt-out of their tracking
+* Using a tool recommended by Facebook to opt-out of their tracking which was not saying anything about setting cookies or the possibility of cookies being set by trackers.
 
 Well, just fuck Facebook, so here is `fb-block`!
 
