@@ -106,7 +106,6 @@ function storageOnChanged(changes) {
 }
 
 
-
 /**
  * Simple initializer function that calls everything we want to be called
  * when the extension popup loads.
@@ -125,13 +124,9 @@ function init() {
   // Bind storageOnChanged to the chrome.storage onChanged event.
   chrome.storage.onChanged.addListener(storageOnChanged);
 
-  // Load and draw the total_blocks when the popup is opened.
+  // Load / draw the total_blocks and session_blocks when the popup is opened.
   chrome.storage.sync.get(function (storage) {
     setTotalBlocksEl(storage.total_blocks || 0);
-  });
-
-  // Load and draw the session_blocks when the popup is opened.
-  chrome.storage.sync.get(function (storage) {
     setSessionBlocksEl(storage.session_blocks || 0);
   });
 }
